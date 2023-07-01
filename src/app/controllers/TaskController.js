@@ -29,10 +29,11 @@ class TaskController {
   }
   async saveTask(req, res) {
     try {
+      const requestInput = req.body;
       const task = new Task();
-      task.title = req.body.title;
-      task.description = req.body.description;
-      task.completed = req.body.completed;
+      task.title = requestInput.title;
+      task.description = requestInput.description;
+      task.completed = requestInput.completed;
       await task.save();
 
       res.status(201).json({ message: "Task created successfully", task });
@@ -45,14 +46,16 @@ class TaskController {
   async updateTask(req, res) {
     try {
       const { id } = req.params;
+      const requestInput = req.body;
+
       const task = await Task.findByPk(id);
       if (!task) {
         throw `Model not found for id ${id}`;
       }
 
-      task.title = req.body.title;
-      task.description = req.body.description;
-      task.completed = req.body.completed;
+      task.title = requestInput.title;
+      task.description = requestInput.description;
+      task.completed = requestInput.completed;
       await task.save();
 
       res.status(200).json({ message: "Task updated successfully", task });
