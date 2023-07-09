@@ -5,20 +5,27 @@ const { Op } = require("sequelize");
 const rulesPost = [
   body("title")
     .notEmpty()
+    .withMessage("El titulo es obligatorio")
     .isLength({ max: 255 })
+    .withMessage("El titulo tiene permitido maximo 255 caracteres")
     .bail()
     .custom(async (value) => {
       const existTitle = await Task.findOne({ where: { title: value } });
-      if (existTitle) throw new Error("Title exists");
+      if (existTitle) throw new Error("Este titulo ya se registro");
     }),
-  body("description").optional().isLength({ max: 500 }),
+  body("description")
+    .optional()
+    .isLength({ max: 500 })
+    .withMessage("La descripción tiene permitido maximo 500 caracteres"),
   body("completed").notEmpty().bail().isBoolean(),
 ];
 
 const rulesPut = [
   body("title")
     .notEmpty()
+    .withMessage("El titulo es obligatorio")
     .isLength({ max: 255 })
+    .withMessage("El titulo tiene permitido maximo 255 caracteres")
     .bail()
     .custom(async (value, { req }) => {
       const existTitle = await Task.findOne({
@@ -29,9 +36,12 @@ const rulesPut = [
           },
         },
       });
-      if (existTitle) throw new Error("Title exists");
+      if (existTitle) throw new Error("Este titulo ya se registro");
     }),
-  body("description").optional().isLength({ max: 500 }),
+  body("description")
+    .optional()
+    .isLength({ max: 500 })
+    .withMessage("La descripción tiene permitido maximo 500 caracteres"),
   body("completed").notEmpty().bail().isBoolean(),
 ];
 
