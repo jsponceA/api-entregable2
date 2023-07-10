@@ -3,8 +3,9 @@ const Task = require("../models/Task");
 class TaskController {
   async getAllTasks(req, res) {
     try {
-      const tasks = await Task.findAll();
-
+      const tasks = await Task.findAll({
+        order: [["id", "DESC"]],
+      });
       res.status(200).json({ tasks });
     } catch (error) {
       res.status(500).json({
