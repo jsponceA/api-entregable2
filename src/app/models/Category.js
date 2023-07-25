@@ -1,8 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/database");
-
-const Task = sequelize.define(
-  "Task",
+const Category = sequelize.define(
+  "Category",
   {
     id: {
       type: DataTypes.BIGINT,
@@ -10,25 +9,13 @@ const Task = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    user_id: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-    },
-    category_id: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-    },
-    title: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     description: {
       type: DataTypes.STRING,
       allowNull: true,
-    },
-    completed: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
     },
   },
   {
@@ -38,4 +25,4 @@ const Task = sequelize.define(
   }
 );
 
-module.exports = Task;
+module.exports = Category;

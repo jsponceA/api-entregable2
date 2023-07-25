@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/database");
 
-const Task = sequelize.define(
-  "Task",
+const User = sequelize.define(
+  "User",
   {
     id: {
       type: DataTypes.BIGINT,
@@ -10,24 +10,16 @@ const Task = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    user_id: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-    },
-    category_id: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-    },
-    title: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
+    email: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
-    completed: {
-      type: DataTypes.BOOLEAN,
+    password: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
@@ -38,4 +30,4 @@ const Task = sequelize.define(
   }
 );
 
-module.exports = Task;
+module.exports = User;

@@ -1,8 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/database");
-
-const Task = sequelize.define(
-  "Task",
+const Tag = sequelize.define(
+  "Tag",
   {
     id: {
       type: DataTypes.BIGINT,
@@ -10,15 +9,7 @@ const Task = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    user_id: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-    },
-    category_id: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-    },
-    title: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -26,8 +17,8 @@ const Task = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    completed: {
-      type: DataTypes.BOOLEAN,
+    bg_color: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
@@ -38,4 +29,4 @@ const Task = sequelize.define(
   }
 );
 
-module.exports = Task;
+module.exports = Tag;

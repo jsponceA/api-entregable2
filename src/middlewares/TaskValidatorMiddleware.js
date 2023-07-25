@@ -3,6 +3,11 @@ const Task = require("../app/models/Task");
 const { Op } = require("sequelize");
 
 const rulesPost = [
+  body("user_id").notEmpty().withMessage("El usuario es obligatorio").bail(),
+  body("category_id")
+    .notEmpty()
+    .withMessage("La categoria es obligatoria")
+    .bail(),
   body("title")
     .notEmpty()
     .withMessage("El titulo es obligatorio")
@@ -21,6 +26,11 @@ const rulesPost = [
 ];
 
 const rulesPut = [
+  body("user_id").notEmpty().withMessage("El usuario es obligatorio").bail(),
+  body("category_id")
+    .notEmpty()
+    .withMessage("La categoria es obligatoria")
+    .bail(),
   body("title")
     .notEmpty()
     .withMessage("El titulo es obligatorio")
